@@ -33,25 +33,24 @@ import java.util.Queue;
 //Solution 2 BFS
 class MaximumDepthBinaryTree_104 {
     public int maxDepth(TreeNode root) {
-        int ans =0;
-        if(root == null)
-            return ans;
-        
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        
-        while(!queue.isEmpty())
-        {
-          int level = queue.size();
-          ans++;
-          for(int i=0; i< level; i++)
-          {
-             if(queue.peek().left != null) queue.offer(queue.peek().left);
-              if(queue.peek().right != null) queue.offer(queue.peek().right);
-              
-              queue.poll();
-          }            
-        }
-        return ans;
+    if(root == null){
+        return 0;
     }
+    int size;
+    int count = 0;
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+    while(!queue.isEmpty()){
+        size = queue.size();
+        count++;
+        for(int i = 0; i< size; i++){
+        TreeNode temp = queue.poll();    
+            if(temp.left != null)
+                queue.add(temp.left);
+            if(temp.right != null)
+                queue.add(temp.right);
+        }
+    }
+    return count;
+}
 }

@@ -1,7 +1,25 @@
 package leetcode.Array;
+//Lessons modifying the existing array
 
 public class MaximumSubArray_53 {
-	 public int maxSubArray(int[] nums) {
+	//Brute force
+    public int maxSubArray1(int[] nums) {
+        if(nums.length == 1){
+            return nums[0];
+        }
+        int sum, max = Integer.MIN_VALUE;
+        for(int i = 0; i<nums.length; i++){
+            sum = nums[i];
+            max = Math.max(sum, max);//I Forgot this
+            for(int j = i+1; j < nums.length; j++){
+                sum += nums[j]; 
+                max = Math.max(sum, max); 
+            }
+        }
+        max = Math.max(max, nums[nums.length -1]);//Also forgot this
+        return max;
+    } 
+	public int maxSubArray(int[] nums) {
 		 if(nums.length == 0) {
 			 return 0;
 		 }

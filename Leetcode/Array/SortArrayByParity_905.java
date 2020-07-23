@@ -33,6 +33,20 @@ package leetcode.Array;
 //}
 
 public class SortArrayByParity_905 {
+	//Better solution 
+	public int[] sortArrayByParity1(int[] A) {
+	    int j = 0;
+	    for(int i = 0; i< A.length; i++){
+	        if(A[i] % 2 == 0){
+	            int temp = A[j];
+	            A[j] = A[i];
+	            A[i] = temp;
+	            j++;
+	        }
+	    }
+	    return A;
+	}
+	
     public int[] sortArrayByParity(int[] A) {
         int p1 = 0, p2 = 0;
         while(p1 < A.length && p2 < A.length){

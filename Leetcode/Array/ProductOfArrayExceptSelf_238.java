@@ -1,6 +1,22 @@
 package leetcode.Array;
 
 public class ProductOfArrayExceptSelf_238 {
+	//Brute Force
+//    public int[] productExceptSelf1(int[] nums) {
+//        int product = 1;
+//        int[] result = new int[nums.length];
+//       for(int i =0 ; i < nums.length; i++){
+//           product = 1;
+//           for(int j = 0; j < nums.length; j++){
+//            if(j != i){
+//                product = product * nums[j];
+//            }   
+//       } 
+//           result[i] = product;
+//               }
+//        return result;
+//    }
+	
 	 // With O(N) apace and time complexity
     // public int[] productExceptSelf(int[] nums) {
     //     int[] start = new int[nums.length];

@@ -2,7 +2,9 @@ package leetcode.Tree;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class BinaryTreeLevelOrderTraversal_102 {
 //  List<List<Integer>> list = new ArrayList<>();
@@ -27,30 +29,29 @@ public class BinaryTreeLevelOrderTraversal_102 {
 //}
 
 //BFS
-
+	List<List<Integer>> list = new ArrayList<>();
      public List<List<Integer>> levelOrder(TreeNode root) {
-     List<List<Integer>> levels = new ArrayList<List<Integer>>();
-     if (root == null) return levels;
-
-     ArrayDeque<TreeNode> nextLevel = new ArrayDeque() {{ offer(root); }};
-     ArrayDeque<TreeNode> currLevel = new ArrayDeque();        
-
-     while (!nextLevel.isEmpty()) {
-         currLevel = nextLevel.clone();
-         nextLevel.clear();
-         levels.add(new ArrayList<Integer>());
-
-         for (TreeNode node : currLevel) {
-             // append the current node value
-             levels.get(levels.size() - 1).add(node.val);
-
-             // process child nodes for the next level
-             if (node.left != null) 
-                 nextLevel.offer(node.left);    
-             if (node.right != null) 
-                 nextLevel.offer(node.right);
-         }   
+         if(root == null){
+             return new ArrayList<>();
+         }
+         Queue<TreeNode> queue = new LinkedList<>();
+         queue.add(root);
+         TreeNode node;
+         while(!queue.isEmpty()){
+             LinkedList<Integer> temp_list = new LinkedList<>();
+             int size = queue.size();
+             for(int i = 0; i < size; i++){
+                 node = queue.poll();
+                 temp_list.add(node.val);
+                 if(node.left != null){
+                     queue.add(node.left);
+                 }
+                 if(node.right != null){
+                     queue.add(node.right);
+                 }
+             }
+             list.add(temp_list);
+         }
+         return list;
      }
-     return levels;
-}
 }
